@@ -1,10 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import ContestPreview from './ContestPreview';
-import data from '../testData';
+import axios from 'axios';
 
-// extends React component
-// Only use this syntax if you need to use state.
 class App extends React.Component {
     state = {
         pageHeader: 'Name contests.',
@@ -12,10 +10,16 @@ class App extends React.Component {
     };
 
     componentDidMount(){
-        // after app get mounted, we will get the data.
-        this.setState({
-            contests: data.contests
-        });
+        // ajax function here.
+        // data is being loaded through ajax call.
+        axios.get('/api/contests')
+        .then(resp => {
+            this.setState({
+                // console.log(resp);
+                contests:resp.data.contests
+            })
+        })
+        .catch(console.error);
     }
 
     componentWillUnmount(){
