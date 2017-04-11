@@ -6,6 +6,6 @@ import data from './testData';
 ReactDOM.render(
     <App contests={data.contests}/>,
     document.getElementById('root')
-    );
+);
 
 
