@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = ({message}) => {
+// Header component is reuseable component.
+const Header = ({ message }) => {
     return (
         <h2 className = 'text-center'>
             {message}
@@ -9,27 +10,20 @@ const Header = ({message}) => {
     );
 };
 
-const App = (props) => {
+Header.protoTypes = {
+    // check if header's props type is string.
+    message: React.PropTypes.string
+};
+
+const App = () => {
     return(
         <div>
-            <Header message = "Naming Contests" />
+            <Header message = "Header Naming Contests" />
             <div>
                 ...
             </div>
         </div>
-    );
-};
-
-App.protoTypes = {
-    // check the proto type has to be string.
-    headerMessage: React.PropTypes.string
-    // check props is required.
-    // headerMessage: React.PropTypes.string.isRequired
-};
-
-App.defaultProps = {
-    headerMessage: 'Hello Defaupt Props!'
-};
+    );};
 
 ReactDOM.render(
     <App />,
