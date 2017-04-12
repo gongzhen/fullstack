@@ -6,7 +6,7 @@ import axios from 'axios';
 class App extends React.Component {
     state = {
         pageHeader: 'Name contests.',
-        contests:[]
+        contests:this.props.initialContests
     };
 
     componentDidMount(){
@@ -17,7 +17,7 @@ class App extends React.Component {
             this.setState({
                 // console.log(resp);
                 contests:resp.data.contests
-            })
+            });
         })
         .catch(console.error);
     }
@@ -27,6 +27,7 @@ class App extends React.Component {
     }
     
     render(){
+        // debugger;
         return(
             <div className = 'App'>
                 <Header message={this.state.pageHeader} />

@@ -2,8 +2,9 @@ import config from './config';
 import apiRouter from './api';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
-
 import express from 'express';
+import serverRender from './serverRender';
+
 const server = express();
 
 server.use(sassMiddleware({
@@ -14,12 +15,14 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
-import './serverRender';
-
 server.get('/', (req, res) => {
-    res.render('index', {
-        content:'...'
-    });
+    serverRender()
+        .then(content => {
+        res.render('index', {
+            content
+        });
+    })
+    .catch(console.error);
 });
 
 server.use('/api', apiRouter);
