@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-// Eventually we have to grap data from API.
-// so we assume we don't have data yet.
-// import data from './testData';
 
+// ajax function here.
+// data is being loaded through ajax call.
+
+// first solution here waste a API call.
 ReactDOM.render(
-    <App initialContests={[]} />,
-    document.getElementById('root')
+  <App initialContests={window.initialData.contests} />,
+  document.getElementById('root')
 );
+
 
 
