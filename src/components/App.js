@@ -15,11 +15,11 @@ class App extends React.Component {
     state = this.props.initialData;
 
     componentDidMount(){
-
+    
     }
 
-    componentWillUnmount(){
-        
+    componentWillUnmount(){        
+
     }
     
     fetchContest = (contestId) => {
@@ -38,6 +38,20 @@ class App extends React.Component {
         });
     }
 
+    fetchContestList = () => {
+        pushState(
+            { currentContestId: null},
+            '/'
+        );
+
+        api.fetchContestList().then(contests => {
+            this.setState({
+                currentContestId: null,
+                contests
+            });
+        });
+    }
+
     // return current contest from currentContestId
     currentContest() {
         return this.state.contests[this.state.currentContestId];
@@ -50,14 +64,17 @@ class App extends React.Component {
         }
         return 'Naming Contests';
     }
-
+    
     currentContent() {
         if (this.state.currentContestId) {
-            return <Contest {...this.currentContest()} />;
+            return <Contest
+                contestListClick={this.fetchContestList}
+                {...this.currentContest()} />;
         }
-        return <ContestList 
-            onContestClick={this.fetchContest}
-            contests={this.state.contests} />;
+
+        return <ContestList
+                onContestClick={this.fetchContest}
+                contests={this.state.contests} />;
     } 
 
     render(){
