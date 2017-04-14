@@ -10,6 +10,3 @@ ReactDOM.render(
   <App initialContests={window.initialData.contests} />,
   document.getElementById('root')
 );
-
-
-
