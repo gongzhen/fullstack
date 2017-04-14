@@ -7,7 +7,7 @@ import * as api from '../api';
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
 
 class App extends React.Component {
-
+    // prop type for state
     static propTypes = {
         initialData:React.PropTypes.object.isRequired
     };
@@ -38,10 +38,12 @@ class App extends React.Component {
         });
     }
 
+    // return current contest from currentContestId
     currentContest() {
         return this.state.contests[this.state.currentContestId];
     }
 
+    // return page header from current contest id.
     pageHeader(){
         if(this.state.currentContestId) {
             return this.currentContest().contestName;

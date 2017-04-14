@@ -15,16 +15,18 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
-server.get('/', (req, res) => {
-    serverRender()
-        .then(( {initialMarkup, initialData} ) => {
-        res.render('index', {
-            initialMarkup,
-            initialData
-        });
+server.get(['/', '/contest/:contestId'], (req, res) => {
+  serverRender(req.params.contestId)
+    .then(({ initialMarkup, initialData }) => {
+      res.render('index', {
+        initialMarkup,
+        initialData
+      });
     })
     .catch(console.error);
 });
+
+
 
 server.use('/api', apiRouter);
 server.use(express.static('public'));
